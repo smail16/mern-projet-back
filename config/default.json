@@ -1,0 +1,4 @@
+{
+  "db": "mongodb+srv://ismailfourati:1994@cluster0.pr05ey7.mongodb.net/projet?retryWrites=true&w=majority",
+  "secret": "shhhh"
+}
