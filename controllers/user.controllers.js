@@ -49,7 +49,7 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).populate("address").populate("commande");
     if (!user) return res.status(404).json({ msg: "wrong information" });
     const isMatch = await bcryptjs.compare(password, user.password);
     if (!isMatch) return res.status(404).json({ msg: "wrong information" });
@@ -63,7 +63,9 @@ exports.login = async (req, res) => {
         id: user._id,
         fullName: user.fullName,
         email: user.email,
-        commande : user.commande
+        phone : user.phone,
+        commande : user.commande,
+        address: user.address
       },
     });
   } catch (error) {
